@@ -1,4 +1,4 @@
-Script started on 2025-04-22 10:02:13+03:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="132" LINES="116"]
+Script started on 2025-04-22 10:11:39+03:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="132" LINES="116"]
 [?2004h]0;simo@Monsteri-PC: /mnt/d/OneDrive - Etela-Savon Koulutus Oy/Tiedostot/Fullstack/osa12/todo-app/todo-backend[01;32msimo@Monsteri-PC[00m:[01;34m/mnt/d/OneDrive - Etela-Savon Koulutus Oy/Tiedostot/Fullstack/osa12/todo-app/todo-backend[00m$ docker compose -f docker -compose.dev.yml up -d
 [?2004l[1A[1B[0G[?25l[+] Running 1/1
  [32m✔[0m Container todo-backend-mongo-1  [32mRunning[0m                                                                                     [34m0.0s [0m
@@ -7,10 +7,10 @@ Script started on 2025-04-22 10:02:13+03:00 [TERM="xterm-256color" TTY="/dev/pts
 [?25h[?2004h]0;simo@Monsteri-PC: /mnt/d/OneDrive - Etela-Savon Koulutus Oy/Tiedostot/Fullstack/osa12/todo-app/todo-backend[01;32msimo@Monsteri-PC[00m:[01;34m/mnt/d/OneDrive - Etela-Savon Koulutus Oy/Tiedostot/Fullstack/osa12/todo-app/todo-backend[00m$ docker ps
 [?2004lCONTAINER ID   IMAGE     COMMAND                  CREATED             STATUS             PORTS                     NAMES
 ecdce99cf02d   nginx     "/docker-entrypoint.…"   About an hour ago   Up About an hour   0.0.0.0:8080->80/tcp      cranky_sammet
-c5ba6f7370db   mongo     "docker-entrypoint.s…"   26 hours ago        Up 9 minutes       0.0.0.0:3456->27017/tcp   todo-backend-mongo-1
-[?2004h]0;simo@Monsteri-PC: /mnt/d/OneDrive - Etela-Savon Koulutus Oy/Tiedostot/Fullstack/osa12/todo-app/todo-backend[01;32msimo@Monsteri-PC[00m:[01;34m/mnt/d/OneDrive - Etela-Savon Koulutus Oy/Tiedostot/Fullstack/osa12/todo-app/todo-backend[00m$ docker exec -it todo-bac kend-mongo-1 bash
+c5ba6f7370db   mongo     "docker-entrypoint.s…"   27 hours ago        Up 18 minutes      0.0.0.0:3456->27017/tcp   todo-backend-mongo-1
+[?2004h]0;simo@Monsteri-PC: /mnt/d/OneDrive - Etela-Savon Koulutus Oy/Tiedostot/Fullstack/osa12/todo-app/todo-backend[01;32msimo@Monsteri-PC[00m:[01;34m/mnt/d/OneDrive - Etela-Savon Koulutus Oy/Tiedostot/Fullstack/osa12/todo-app/todo-backend[00m$ docker -exec [K[K[K[K[K[Kexec -it todo-bac kend-mongo-1 bash
 [?2004l[?2004hroot@c5ba6f7370db:/# mongosh -u root -p example
-[?2004l]0;mongosh mongodb://<credentials>@127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000Current Mongosh Log ID:	68073f5cd4776bfe4bd861df
+[?2004l]0;mongosh mongodb://<credentials>@127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000Current Mongosh Log ID:	68074187e11b33b6c0d861df
 Connecting to:		[1m[32mmongodb://<credentials>@127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.5.0[0m
 Using MongoDB:		8.0.8
 [1m[33mUsing Mongosh[0m:		2.5.0
@@ -30,21 +30,11 @@ For mongosh info see: https://www.mongodb.com/docs/mongodb-shell/
 switched to db the_database
 [1G[0Jthe_database> [15Gshow collections
 [1mtodos[0m
-[1G[0Jthe_database> [15Gdb.todos.insertOne({ text[33mtext[39m: [32m"[39m[32mM[39m[32mu[39m[32mi[39m[32ms[39m[32mt[39m[32ma[39m [32mt[39m[32me[39m[32ms[39m[32mt[39m[32ma[39m[32mt[39m[32ma[39m [32mp[39m[32ma[39m[32ml[39m[32mj[39m[32mo[39m[32mn[39m[32m"[39m }, [1G[0Jthe_database> db.todos.insertOne({ [33mtext[39m: [32m"Muista testata paljon"[39m },[68G[1G[0Jthe_database> db.todos.insertOne({ [33mtext[39m: [32m"Muista testata paljon"[39m }[67G[1G[0Jthe_database> db.todos.insertOne({ [33mtext[39m: [32m"Muista testata paljon"[39m [66G[1G[0Jthe_database> db.todos.insertOne({ [33mtext[39m: [32m"Muista testata paljon"[39m[65G, d[36mdo[39mdone: fals[33mfalse[39m])
-Uncaught:
-[1m[31mSyntaxError[0m: Unexpected token, expected "," (1:63)
-
-[0m[31m[1m>[22m[39m[90m 1 |[39m db[33m.[39mtodos[33m.[39minsertOne({ text[33m:[39m [32m"Muista testata paljon"[39m[33m,[39m done[33m:[39m [36mfalse[39m])
- [90m   |[39m                                                                [31m[1m^[22m[39m
- [90m 2 |[39m[0m
-
-[1G[0Jthe_database> [15G[1G[0Jthe_database> db.todos.insertOne({ [33mtext[39m: [32m"Muista testata paljon"[39m, [33mdone[39m: [33mfalse[39m])[80G[1D[1G[0Jthe_database> db.todos.insertOne[44m([49m{ [33mtext[39m: [32m"Muista testata paljon"[39m, [33mdone[39m: [33mfalse[39m])[79G[1G[0Jthe_database> db.todos.insertOne[44m([49m{ [33mtext[39m: [32m"Muista testata paljon"[39m, [33mdone[39m: [33mfalse[39m)[78G[1G[0Jthe_database> db.todos.insertOne[44m([49m{ [33mtext[39m: [32m"Muista testata paljon"[39m, [33mdone[39m: [33mfalse[39m})[79G[1C[1G[0Jthe_database> db.todos.insertOne({ [33mtext[39m: [32m"Muista testata paljon"[39m, [33mdone[39m: [33mfalse[39m})[80G
+[1G[0Jthe_database> [15Gdb.todos.insertOne({ text[33mtext[39m: [32m"[39m[32mI[39m[32mn[39m[32mc[39m[32mr[39m[32me[39m[32ma[39m[32ms[39m[32me[39m [32mt[39m[32mh[39m[32me[39m [32mn[39m[32mu[39m[32mm[39m[32mb[39m[32me[39m[32mr[39m [32mo[39m[32mf[39m [32mt[39m[32mo[39m[32mo[39m[32ml[39m[32ms[39m [32mi[39m[32mn[39m [32mm[39m[32my[39m [32mt[39m[32mo[39m[32mo[39m[32ml[39m [32mb[39m[32me[39m[32ml[39m[32mt[39m[32m"[39m, d[36mdo[39mdone:fals[33mfalse[39m})
 {
   acknowledged: [33mtrue[39m,
-  insertedId: ObjectId([32m'68073fb6d4776bfe4bd861e0'[39m)
+  insertedId: ObjectId([32m'680741c5e11b33b6c0d861e0'[39m)
 }
-[1G[0Jthe_database> [15Gdb.database.find({})
-
 [1G[0Jthe_database> [15Gdb.todos.find({})
 [
   {
@@ -66,6 +56,11 @@ Uncaught:
     _id: ObjectId([32m'68073fb6d4776bfe4bd861e0'[39m),
     text: [32m'Muista testata paljon'[39m,
     done: [33mfalse[39m
+  },
+  {
+    _id: ObjectId([32m'680741c5e11b33b6c0d861e0'[39m),
+    text: [32m'Increase the number of tools in my tool belt'[39m,
+    done: [33mfalse[39m
   }
 ]
 [1G[0Jthe_database> [15Gexit
@@ -74,4 +69,4 @@ Uncaught:
 [?2004h]0;simo@Monsteri-PC: /mnt/d/OneDrive - Etela-Savon Koulutus Oy/Tiedostot/Fullstack/osa12/todo-app/todo-backend[01;32msimo@Monsteri-PC[00m:[01;34m/mnt/d/OneDrive - Etela-Savon Koulutus Oy/Tiedostot/Fullstack/osa12/todo-app/todo-backend[00m$ exit
 [?2004lexit
 
-Script done on 2025-04-22 10:06:43+03:00 [COMMAND_EXIT_CODE="0"]
+Script done on 2025-04-22 10:14:39+03:00 [COMMAND_EXIT_CODE="0"]
