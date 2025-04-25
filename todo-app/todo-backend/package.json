@@ -4,7 +4,15 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "dev": "nodemon ./bin/www"
+    "dev": "nodemon ./bin/www",
+    "redis": "docker run --name local-redis -p 6379:6379 -d redis",
+    "redis-stop": "docker stop local-redis",
+    "redis-rm": "docker rm local-redis",
+    "mongo": "docker run --name local-mongo -p 27017:27017 -d -e MONGO_INITDB_ROOT_USERNAME=root -e MONGO_INITDB_ROOT_PASSWORD=example mongo",
+    "mongo-stop": "docker stop local-mongo",
+    "mongo-rm": "docker rm local-mongo",
+    "local": "npm run redis && npm run mongo && npm run dev",
+    "local-stop": "npm run redis-stop && npm run mongo-stop && npm run redis-rm && npm run mongo-rm"
   },
   "dependencies": {
     "cors": "^2.8.5",
