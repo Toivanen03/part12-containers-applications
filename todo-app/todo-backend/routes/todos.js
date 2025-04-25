@@ -14,7 +14,7 @@ router.post('/', async (req, res) => {
     text: req.body.text,
     done: false
   })
-  res.send(todo);
+  res.json(todo);
 });
 
 const singleRouter = express.Router();

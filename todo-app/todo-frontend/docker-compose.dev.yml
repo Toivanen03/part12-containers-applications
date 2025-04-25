@@ -1,0 +1,16 @@
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: dev.Dockerfile
+      args:
+        VITE_BACKEND_URL: http://host.docker.internal:3000
+    volumes:
+      - ./:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - "5173:5173"
+    environment:
+      NODE_ENV: development
+      VITE_BACKEND_URL: http://host.docker.internal:3000
+    command: npm run dev -- --host
