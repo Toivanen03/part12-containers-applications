@@ -13,9 +13,10 @@ COPY . .
 RUN npm run test
 
 FROM base AS build-stage
+ENV NODE_ENV=production
 COPY package-lock.json ./
 COPY package.json ./
-RUN npm ci
+RUN npm ci --include=dev
 COPY . .
 RUN npm run build
 
