@@ -14,3 +14,12 @@ services:
       NODE_ENV: development
       VITE_BACKEND_URL: http://host.docker.internal:3000
     command: npm run dev -- --host
+  nginx:
+    image: nginx:1.20.1
+    volumes:
+      - ./nginx.dev.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - 8080:80
+    container_name: reverse-proxy-front
+    depends_on:
+      - frontend

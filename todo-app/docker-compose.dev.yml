@@ -8,7 +8,7 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: example
       MONGO_INITDB_DATABASE: the_database
     volumes: 
-      - ./mongo/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js
+      - ./todo-backend/mongo/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js
       - mongo_data:/data/db
 
   redis:
@@ -16,19 +16,29 @@ services:
     ports:
       - 6379:6379
     environment:
-      MONGO_URL: mongodb://root:example@mongo:27017/the_database
       REDIS_URL: redis://redis:6379/0
     command: ['redis-server', '--appendonly', 'yes']
     volumes:
-      - ./redis_data:/data
+      - ./todo-backend/redis_data:/data
+  
+  frontend:
+    image: todo-frontend
+    build:
+      context: ./todo-frontend
+      dockerfile: dev.Dockerfile
+    volumes:
+      - ./todo-frontend:/usr/src/app
+      - /usr/src/app/node_modules
+    environment:
+      NODE_ENV: development
+      VITE_BACKEND_URL: http://localhost:8080/api
+    command: npm run dev -- --host
 
   backend:
     image: todo-backend
     build:
-      context: .
+      context: ./todo-backend
       dockerfile: dev.Dockerfile
-    ports:
-      - "3000:3000"
     environment:
       NODE_ENV: development
       MONGO_URL: mongodb://root:example@mongo:27017/the_database
@@ -37,7 +47,7 @@ services:
       - mongo
       - redis
     volumes:
-      - ./:/usr/src/app
+      - ./todo-backend:/usr/src/app
       - /usr/src/app/node_modules
     command: npm run dev
 
@@ -47,9 +57,10 @@ services:
       - ./nginx.dev.conf:/etc/nginx/nginx.conf:ro
     ports:
       - 8080:80
-    container_name: reverse-proxy-back
+    container_name: reverse-proxy
     depends_on:
       - backend
+      - frontend
 
 volumes:
   mongo_data:
