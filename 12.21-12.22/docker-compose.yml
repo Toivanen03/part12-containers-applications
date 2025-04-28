@@ -1,0 +1,32 @@
+services:
+  frontend:
+    image: patients-frontend
+    build:
+      context: ./Frontend
+      dockerfile: Dockerfile
+      args:
+        VITE_BACKEND_URL: http://localhost:8080/patients
+    environment:
+      NODE_ENV: production
+
+  backend:
+    image: patients-backend
+    build:
+      context: ./Backend
+      dockerfile: Dockerfile
+    environment:
+      NODE_ENV: production
+    ports:
+      - "3001:3001"
+    command: npm start
+
+  nginx:
+    image: nginx:1.20.1
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - 8080:80
+    container_name: reverse-proxy
+    depends_on:
+      - backend
+      - frontend
